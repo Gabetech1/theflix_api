@@ -18,7 +18,7 @@ add('writable_dirs', []);
 
 host('80.209.233.7')
     ->set('remote_user', 'manifest')
-    ->set('deploy_path', '/var/www/mylaravelapi.gabeshub.com');
+    ->set('deploy_path', '/var/www/gabeapi.siteshowcase.top');
 
 // Hooks
 
@@ -28,7 +28,7 @@ task('deploy', [
     'artisan:storage:link',
     'artisan:view:cache',
     'artisan:config:cache',
-   // 'artisan:migrate',
+    'artisan:migrate',
   //  'npm:install',
     //'npm:run:prod',
     'deploy:publish',

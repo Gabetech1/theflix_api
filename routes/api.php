@@ -8,7 +8,7 @@ use App\Http\Controllers\TrackingController;
 
 Route::group(['middleware' => 'api',], function () {
     Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/signup', [AuthController::class, 'signup']);
+
     Route::post('/sendPasswordResetLink', [AuthController::class, 'sendPasswordResetLink']);
     Route::post('/resetPassword', [ChangePasswordController::class, 'proccess']);
 
@@ -22,3 +22,5 @@ Route::group(['middleware' => 'api',], function () {
 
     Route::get('/test', [AuthController::class, 'test']);
 });
+
+Route::post('/api/signup', [AuthController::class, 'signup']);
