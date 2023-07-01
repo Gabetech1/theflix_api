@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Tracking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TrackingController extends Controller
 {
@@ -146,7 +148,26 @@ class TrackingController extends Controller
         return "deleted";
     }
 
-    public function sendMail(){
+    public function sendMail(Request $request){
+
+        $data = array(
+            'full_name' => $request->full_name,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'admin_email' => $request->admin_email,
+            'site_name' => $request->site_name,
+            'receiver_email' => $request->receiver_email,
+            'receiver_name' => $request->receiver_name,
+        );
+
+        Mail::to($request->receiver_email)->send(new ContactMail($data));
+
+        return response()->json([
+            "status" => "Email sent"
+        ]);
+
 
     }
 
